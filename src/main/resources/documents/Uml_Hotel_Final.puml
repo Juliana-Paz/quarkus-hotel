@@ -1,0 +1,137 @@
+@startuml OasisHotel
+
+class Usuario {
+    - id: String
+    - nome: String
+    - sobrenome: String
+    - senha: String
+    - dataNascimento: Date
+    - endereco: String
+    - cpf: String
+}
+
+class Contato {
+    - id: String
+    - email: String
+    - telefone: String
+}
+
+class Cliente {
+    - sobre: String
+    - nacionalidade: String
+}
+
+class Funcionario {
+    - cargo: String
+}
+
+class Quarto {
+    - id: String
+    - nome: String
+    - valor: int
+    - descricao: String
+    - isReservado: boolean
+}
+
+class TipoQuarto {
+    - id: String
+    - nome: String
+}
+
+class Amenidade {
+    - id: String
+    - nome: String
+}
+
+class Promocao {
+    - id: String
+    - nome: String
+    - descricao: String
+    - dataInicio: Date
+    - dataFim: Date
+    - valor: double
+}
+
+class ReservaQuarto {
+    - id: String
+    - checkInDate: Date
+    - checkOutDate: Date
+    - qtdAdultos: int
+    - qtdCrianca: int
+}
+
+class Servico {
+    - id: String
+    - nome: String
+    - descricao: String
+    - valor: double
+}
+
+class Reserva {
+    - id: String
+    - valor: double
+}
+
+class Pagamento {
+    - id: String
+}
+
+class CartaoCredito {
+    - id: String
+    - titular: String
+    - validade: Date
+    - numero: int 
+    - codigoVerificacao: String
+}
+
+class CupomDesconto {
+    - id: String
+    - codigo: String
+    - descricao: String
+    - valor: double
+    - dataValidade: Date
+}
+
+class Avaliacao {
+    - id: String
+    - titulo: String
+    - descricao: String
+    - rate: String
+    - divulgacao: bool
+}
+
+class Mensagem {
+    - id: String
+    - email: String
+    - nome: String
+    - telefone: String
+    - descricao: String
+    - assunto: String
+    - autenticado: boolean
+}
+
+Usuario "1" *--> "*" Contato
+Usuario "1..0" --> "*" Mensagem
+Usuario "1" --> "1" Funcionario
+Usuario "1" --> "1" Cliente
+Cliente "1" *--> "*" CartaoCredito
+Cliente "1" o--> "*" Avaliacao
+Cliente "1" *--> "*" Reserva
+Reserva "1" o--> "1" Pagamento
+Pagamento "1" o--> "1" CartaoCredito
+Reserva "1" --> "*" ReservaQuarto
+ReservaQuarto "1" o--> "*" Servico
+ReservaQuarto "1" o--> "*" Quarto
+Quarto "1" o--> "*" Amenidade
+Quarto "1" o--> "1" TipoQuarto
+Promocao "1" *--> "*" TipoQuarto
+CupomDesconto "1" *--> "*" TipoQuarto
+
+
+@enduml
+
+
+
+
+
+
