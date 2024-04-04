@@ -1,25 +1,18 @@
 package br.unitins.topicos2.ano2024.model;
 
 import java.time.YearMonth;
+import jakarta.persistence.Entity;
 
-public class CartaoCredito {
+
+public class CartaoCredito extends DefaultEntity {
     
-    private String id;
     private String  titular;
     private YearMonth validade;
     private String numeroCartao;
     private String codigoVerificacao;
 
-    public  CartaoCredito(){
+    public CartaoCredito(){
 
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTitular() {

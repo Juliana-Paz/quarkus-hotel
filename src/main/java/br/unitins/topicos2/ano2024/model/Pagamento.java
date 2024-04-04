@@ -1,18 +1,19 @@
 package br.unitins.topicos2.ano2024.model;
 
-public class Pagamento {
+import jakarta.persistence.Entity;
+
+public class Pagamento extends DefaultEntity {
     
-    private String id;
+    private CartaoCredito cartaoCredito;
 
     public  Pagamento() {}
-
-    public String getId() {
-        return id;
+    
+    public CartaoCredito getCartaoCredito() {
+        return cartaoCredito;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCartaoCredito(CartaoCredito cartaoCredito) {
+        this.cartaoCredito = cartaoCredito;
     }
-
     
 }

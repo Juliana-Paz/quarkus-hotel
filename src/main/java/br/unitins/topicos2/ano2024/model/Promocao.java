@@ -1,25 +1,19 @@
 package br.unitins.topicos2.ano2024.model;
 
 import java.time.YearMonth;
+import jakarta.persistence.Entity;
 
-public class Promocao {
+@Entity
+public class Promocao extends DefaultEntity {
     
-    private String id;
     private String nome; 
-    private String  descricao;  
+    private String descricao;  
     private double valor;
-    private YearMonth  dataInicio;
+    private YearMonth dataInicio;
+    private YearMonth dataFim;
 
     public  Promocao() {
 
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -52,6 +46,14 @@ public class Promocao {
 
     public void setDataInicio(YearMonth dataInicio) {
         this.dataInicio = dataInicio;
+    }
+
+    public YearMonth getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(YearMonth dataFim) {
+        this.dataFim = dataFim;
     }
 
     

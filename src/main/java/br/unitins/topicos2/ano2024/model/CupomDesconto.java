@@ -1,10 +1,11 @@
 package br.unitins.topicos2.ano2024.model;
 
 import java.time.YearMonth;
+import jakarta.persistence.Entity;
 
-public class CupomDesconto {
+@Entity
+public class CupomDesconto extends DefaultEntity {
     
-    private String id;
     private String codigo;
     private String descricao;
     private double valor;
@@ -12,14 +13,6 @@ public class CupomDesconto {
 
     public  CupomDesconto() {
 
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getCodigo() {

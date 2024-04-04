@@ -10,19 +10,15 @@ class Usuario {
     - cpf: String
 }
 
+enum Perfil {
+    - Funcionario
+    - Cliente
+}
+
 class Contato {
     - id: String
     - email: String
     - telefone: String
-}
-
-class Cliente {
-    - sobre: String
-    - nacionalidade: String
-}
-
-class Funcionario {
-    - cargo: String
 }
 
 class Quarto {
@@ -112,11 +108,10 @@ class Mensagem {
 
 Usuario "1" *--> "*" Contato
 Usuario "1..0" --> "*" Mensagem
-Usuario "1" --> "1" Funcionario
-Usuario "1" --> "1" Cliente
-Cliente "1" *--> "*" CartaoCredito
-Cliente "1" o--> "*" Avaliacao
-Cliente "1" *--> "*" Reserva
+Usuario "*" --> "*" Perfil
+Usuario "1" *--> "*" CartaoCredito
+Usuario "1" o--> "*" Avaliacao
+Usuario "1" *--> "*" Reserva
 Reserva "1" o--> "1" Pagamento
 Pagamento "1" o--> "1" CartaoCredito
 Reserva "1" --> "*" ReservaQuarto
@@ -129,8 +124,6 @@ CupomDesconto "1" *--> "*" TipoQuarto
 
 
 @enduml
-
-
 
 
 

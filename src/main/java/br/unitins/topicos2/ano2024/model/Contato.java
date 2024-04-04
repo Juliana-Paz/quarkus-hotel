@@ -1,20 +1,14 @@
 package br.unitins.topicos2.ano2024.model;
+import jakarta.persistence.Entity;
 
-public class Contato {
-    private String id;
+@Entity
+public class Contato extends DefaultEntity {
+    
     private String email;
     private String telefone;
     
     public Contato() {
 
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getEmail() {
