@@ -1,6 +1,7 @@
 package br.unitins.topicos2.ano2024.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.unitins.topicos2.ano2024.dto.ContatoDTO;
 import br.unitins.topicos2.ano2024.dto.UsuarioDTO;
@@ -18,6 +19,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Inject
     UsuarioRepository usuarioRepository;
+
+    @Override
+    public List<UsuarioResponseDTO> getAll(int page, int pageSize) {
+        List<Usuario> usuarios = usuarioRepository.findAll().page(page, pageSize).list();
+        return usuarios.stream().map(UsuarioResponseDTO::valueOf).collect(Collectors.toList());
+    }
+
 
     @Override
     @Transactional
@@ -46,11 +54,5 @@ public class UsuarioServiceImpl implements UsuarioService{
         return UsuarioResponseDTO.valueOf(newUsuario);
 
     }
-
-    @Override
-    public List<UsuarioResponseDTO> getAll() {
-        return usuarioRepository.listAll().stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
-    }   
-
    
 }

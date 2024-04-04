@@ -8,6 +8,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
@@ -26,9 +27,9 @@ public class UsuarioResource {
     }
     
     @GET
-    public Response getAll() {
+    public Response getAll(@QueryParam("page") int page, @QueryParam("pageSize") int pageSize) {
         try {
-            return Response.ok().entity(usuarioService.getAll()).build();
+            return Response.ok().entity(usuarioService.getAll(page, pageSize)).build();
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }

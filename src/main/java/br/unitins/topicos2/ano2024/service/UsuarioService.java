@@ -7,7 +7,8 @@ import br.unitins.topicos2.ano2024.dto.UsuarioResponseDTO;
 
 public interface UsuarioService {
 
+    List<UsuarioResponseDTO> getAll(int page, int pageSize);
+    
     UsuarioResponseDTO create(UsuarioDTO usuario);   
-    List<UsuarioResponseDTO> getAll();   
     
 }
