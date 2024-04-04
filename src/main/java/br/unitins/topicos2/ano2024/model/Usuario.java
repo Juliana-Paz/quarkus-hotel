@@ -15,6 +15,8 @@ public class Usuario extends DefaultEntity {
     private String nome;
     private String sobrenome;
     private String senha;
+    private String email;
+    
     private LocalDate dataNascimento;
     private String endereco;
     private String cpf;
@@ -22,7 +24,7 @@ public class Usuario extends DefaultEntity {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
     private List<Contato> contatos = new ArrayList<>();
-        
+    
     private Perfil perfil;
     
     
@@ -41,7 +43,7 @@ public class Usuario extends DefaultEntity {
     public String getSobrenome() {
         return sobrenome;
     }
-
+    
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
@@ -52,6 +54,14 @@ public class Usuario extends DefaultEntity {
     
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     public LocalDate getDataNascimento() {

@@ -1,6 +1,7 @@
 package br.unitins.topicos2.ano2024.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import br.unitins.topicos2.ano2024.dto.ContatoDTO;
@@ -13,12 +14,19 @@ import br.unitins.topicos2.ano2024.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class UsuarioServiceImpl implements UsuarioService{
 
     @Inject
     UsuarioRepository usuarioRepository;
+
+    @Inject
+    Validator validator;
 
     @Override
     public List<UsuarioResponseDTO> getAll(int page, int pageSize) {
@@ -29,30 +37,79 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     @Transactional
-    public UsuarioResponseDTO create(UsuarioDTO usuario) {
+    public UsuarioResponseDTO create(UsuarioDTO usuarioDTO) {
         
-        Usuario newUsuario = new Usuario();
-        newUsuario.setNome(usuario.nome());
-        newUsuario.setSobrenome(usuario.sobrenome());
-        newUsuario.setSenha(usuario.senha());
-        newUsuario.setDataNascimento(usuario.dataNascimento());
-        newUsuario.setEndereco(usuario.endereco());
-        newUsuario.setCpf(usuario.cpf());
-        newUsuario.setPerfil(Perfil.valueOf(usuario.perfilId()));
+        Usuario entity = new Usuario();
         
-        if (usuario.contatos() != null && !usuario.contatos().isEmpty()) {
-            for (ContatoDTO contatoDTO : usuario.contatos()) {
+        entity.setNome(usuarioDTO.nome());
+        entity.setSobrenome(usuarioDTO.sobrenome());
+        entity.setSenha(usuarioDTO.senha());
+        entity.setEmail(usuarioDTO.email());
+        entity.setDataNascimento(usuarioDTO.dataNascimento());
+        entity.setEndereco(usuarioDTO.endereco());
+        entity.setCpf(usuarioDTO.cpf());
+        entity.setPerfil(Perfil.valueOf(usuarioDTO.perfilId()));
+        
+        if (usuarioDTO.contatos() != null && !usuarioDTO.contatos().isEmpty()) {
+            for (ContatoDTO contatoDTO : usuarioDTO.contatos()) {
                 Contato contato = new Contato();
-                contato.setEmail(contatoDTO.email());
                 contato.setTelefone(contatoDTO.telefone());
-                newUsuario.getContatos().add(contato);
+                entity.getContatos().add(contato);
             }
         }
-
-        usuarioRepository.persist(newUsuario);
         
-        return UsuarioResponseDTO.valueOf(newUsuario);
+        usuarioRepository.persist(entity);
+
+        return UsuarioResponseDTO.valueOf(entity);
+
+    }    
+    
+    @Override
+    @Transactional
+    public UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO) throws ConstraintViolationException {
+        validar(usuarioDTO);
+        
+        Usuario entity = usuarioRepository.findById(id);
+        
+        entity.setNome(usuarioDTO.nome());
+        entity.setSobrenome(usuarioDTO.sobrenome());
+        entity.setSenha(usuarioDTO.senha());
+        entity.setEmail(usuarioDTO.email());
+        entity.setDataNascimento(usuarioDTO.dataNascimento());
+        entity.setEndereco(usuarioDTO.endereco());
+        entity.setCpf(usuarioDTO.cpf());
+        entity.setPerfil(Perfil.valueOf(usuarioDTO.perfilId()));
+        
+        if (usuarioDTO.contatos() != null && !usuarioDTO.contatos().isEmpty()) {
+            for (ContatoDTO contatoDTO : usuarioDTO.contatos()) {
+                Contato contato = new Contato();
+                contato.setTelefone(contatoDTO.telefone());
+                entity.getContatos().add(contato);
+            }
+        }
+        
+        return UsuarioResponseDTO.valueOf(entity);
+    }
+    
+    private void validar(UsuarioDTO usuarioDTO) throws ConstraintViolationException {
+        Set<ConstraintViolation<UsuarioDTO>> violations = validator.validate(usuarioDTO);
+        if (!violations.isEmpty())
+            throw new ConstraintViolationException(violations);
 
     }
-   
+    
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public UsuarioResponseDTO findById(Long id) {
+        Usuario usuario = usuarioRepository.findById(id);
+        if (usuario == null)
+            throw new NotFoundException("Usuario não encontrado.");
+        return UsuarioResponseDTO.valueOf(usuario);
+    }
+    
 }

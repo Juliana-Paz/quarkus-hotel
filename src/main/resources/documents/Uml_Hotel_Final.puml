@@ -1,9 +1,10 @@
 @startuml OasisHotel
 
 class Usuario {
-    - id: String
+    - id: Long
     - nome: String
     - sobrenome: String
+    - email: String
     - senha: String
     - dataNascimento: Date
     - endereco: String
@@ -16,13 +17,12 @@ enum Perfil {
 }
 
 class Contato {
-    - id: String
-    - email: String
+    - id: Long
     - telefone: String
 }
 
 class Quarto {
-    - id: String
+    - id: Long
     - nome: String
     - valor: int
     - descricao: String
@@ -30,17 +30,17 @@ class Quarto {
 }
 
 class TipoQuarto {
-    - id: String
+    - id: Long
     - nome: String
 }
 
 class Amenidade {
-    - id: String
+    - id: Long
     - nome: String
 }
 
 class Promocao {
-    - id: String
+    - id: Long
     - nome: String
     - descricao: String
     - dataInicio: Date
@@ -49,7 +49,7 @@ class Promocao {
 }
 
 class ReservaQuarto {
-    - id: String
+    - id: Long
     - checkInDate: Date
     - checkOutDate: Date
     - qtdAdultos: int
@@ -57,23 +57,23 @@ class ReservaQuarto {
 }
 
 class Servico {
-    - id: String
+    - id: Long
     - nome: String
     - descricao: String
     - valor: double
 }
 
 class Reserva {
-    - id: String
+    - id: Long
     - valor: double
 }
 
 class Pagamento {
-    - id: String
+    - id: Long
 }
 
 class CartaoCredito {
-    - id: String
+    - id: Long
     - titular: String
     - validade: Date
     - numero: int 
@@ -81,7 +81,7 @@ class CartaoCredito {
 }
 
 class CupomDesconto {
-    - id: String
+    - id: Long
     - codigo: String
     - descricao: String
     - valor: double
@@ -89,7 +89,7 @@ class CupomDesconto {
 }
 
 class Avaliacao {
-    - id: String
+    - id: Long
     - titulo: String
     - descricao: String
     - rate: String
@@ -97,7 +97,7 @@ class Avaliacao {
 }
 
 class Mensagem {
-    - id: String
+    - id: Long
     - email: String
     - nome: String
     - telefone: String

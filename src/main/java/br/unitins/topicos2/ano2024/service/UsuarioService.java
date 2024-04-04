@@ -9,6 +9,12 @@ public interface UsuarioService {
 
     List<UsuarioResponseDTO> getAll(int page, int pageSize);
     
-    UsuarioResponseDTO create(UsuarioDTO usuario);   
+    UsuarioResponseDTO create(UsuarioDTO usuario);  
+    
+    UsuarioResponseDTO update(Long id, UsuarioDTO dto);
+
+    void delete(Long id);
+
+    UsuarioResponseDTO findById(Long id);
     
 }

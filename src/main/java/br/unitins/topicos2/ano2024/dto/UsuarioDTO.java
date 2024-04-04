@@ -8,6 +8,7 @@ public record UsuarioDTO(
     String nome,
     String sobrenome,
     String senha,
+    String email,
     String endereco,
     String cpf,
     List<ContatoDTO> contatos,
