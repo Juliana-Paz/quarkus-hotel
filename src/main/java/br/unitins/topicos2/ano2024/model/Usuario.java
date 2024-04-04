@@ -1,7 +1,13 @@
 package br.unitins.topicos2.ano2024.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Usuario extends DefaultEntity {
@@ -12,11 +18,11 @@ public class Usuario extends DefaultEntity {
     private LocalDate dataNascimento;
     private String endereco;
     private String cpf;
-    private Mensagem mensagem;    
-    private Avaliacao avaliacao;
-    private CartaoCredito cartaoCredito;
-    private Reserva reserva;
-    private Contato contato;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
+    private List<Contato> contatos = new ArrayList<>();
+        
     private Perfil perfil;
     
     
@@ -72,38 +78,6 @@ public class Usuario extends DefaultEntity {
         this.cpf = cpf;
     }
     
-    public Avaliacao getAvaliacao() {
-        return avaliacao;
-    }
-    
-    public void setAvaliacao(Avaliacao avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-    
-    public CartaoCredito getCartaoCredito() {
-        return cartaoCredito;
-    }
-    
-    public void setCartaoCredito(CartaoCredito cartaoCredito) {
-        this.cartaoCredito = cartaoCredito;
-    }
-    
-    public Reserva getReserva() {
-        return reserva;
-    }
-    
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-    
-    public Contato getContato() {
-        return contato;
-    }
-    
-    public void setContato(Contato contato) {
-        this.contato = contato;
-    }
-    
     public Perfil getPerfil() {
         return perfil;
     }
@@ -111,13 +85,13 @@ public class Usuario extends DefaultEntity {
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
-    
-    public Mensagem getMensagem() {
-        return mensagem;
+
+    public List<Contato> getContatos() {
+        return contatos;
     }
-    
-    public void setMensagem(Mensagem mensagem) {
-        this.mensagem = mensagem;
+
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
     }
 
 }

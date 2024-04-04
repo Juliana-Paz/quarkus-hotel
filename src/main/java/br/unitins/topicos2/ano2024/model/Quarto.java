@@ -1,6 +1,11 @@
 package br.unitins.topicos2.ano2024.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Quarto extends DefaultEntity {
@@ -9,8 +14,10 @@ public class Quarto extends DefaultEntity {
     private double valor;
     private String descricao;
     private boolean isDisponivel;
+    @OneToOne
     private TipoQuarto tipoQuarto;
-    private Amenidade amenidade;
+    @OneToMany
+    private List<Amenidade> amenidade;
 
     public Quarto (){
         
@@ -56,11 +63,11 @@ public class Quarto extends DefaultEntity {
         this.tipoQuarto = tipoQuarto;
     }
 
-    public Amenidade getAmenidade() {
+    public List<Amenidade> getAmenidade() {
         return amenidade;
     }
 
-    public void setAmenidade(Amenidade amenidade) {
+    public void setAmenidade(List<Amenidade> amenidade) {
         this.amenidade = amenidade;
     }
 
