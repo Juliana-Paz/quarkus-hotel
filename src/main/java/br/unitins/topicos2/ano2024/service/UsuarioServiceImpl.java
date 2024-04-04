@@ -1,9 +1,12 @@
 package br.unitins.topicos2.ano2024.service;
 
+import java.util.List;
+
 import br.unitins.topicos2.ano2024.dto.ContatoDTO;
 import br.unitins.topicos2.ano2024.dto.UsuarioDTO;
 import br.unitins.topicos2.ano2024.dto.UsuarioResponseDTO;
 import br.unitins.topicos2.ano2024.model.Contato;
+import br.unitins.topicos2.ano2024.model.Perfil;
 import br.unitins.topicos2.ano2024.model.Usuario;
 import br.unitins.topicos2.ano2024.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -24,9 +27,10 @@ public class UsuarioServiceImpl implements UsuarioService{
         newUsuario.setNome(usuario.nome());
         newUsuario.setSobrenome(usuario.sobrenome());
         newUsuario.setSenha(usuario.senha());
-        //newUsuario.setDataNascimento(usuario.dataNascimento());
+        newUsuario.setDataNascimento(usuario.dataNascimento());
         newUsuario.setEndereco(usuario.endereco());
         newUsuario.setCpf(usuario.cpf());
+        newUsuario.setPerfil(Perfil.valueOf(usuario.perfilId()));
         
         if (usuario.contatos() != null && !usuario.contatos().isEmpty()) {
             for (ContatoDTO contatoDTO : usuario.contatos()) {
@@ -41,6 +45,12 @@ public class UsuarioServiceImpl implements UsuarioService{
         
         return UsuarioResponseDTO.valueOf(newUsuario);
 
+    }
+
+    @Override
+    public List<UsuarioResponseDTO> getAll() {
+        return usuarioRepository.listAll().stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
     }   
-    
+
+   
 }

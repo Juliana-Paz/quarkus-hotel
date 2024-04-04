@@ -1,5 +1,6 @@
 package br.unitins.topicos2.ano2024.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public record UsuarioDTO(
@@ -9,8 +10,9 @@ public record UsuarioDTO(
     String senha,
     String endereco,
     String cpf,
-    List<ContatoDTO> contatos
-    // Integer perfil;
+    List<ContatoDTO> contatos,
+    LocalDate dataNascimento,
+    Integer perfilId
 
 ) {
     
