@@ -2,6 +2,7 @@ package br.unitins.topicos2.ano2024.resource;
 
 import br.unitins.topicos2.ano2024.dto.UsuarioDTO;
 import br.unitins.topicos2.ano2024.dto.UsuarioResponseDTO;
+import br.unitins.topicos2.ano2024.model.Perfil;
 import br.unitins.topicos2.ano2024.service.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -22,7 +23,7 @@ import jakarta.ws.rs.core.Response.Status;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioResource {
-    
+
     @Inject
     UsuarioService usuarioService;
 
@@ -62,8 +63,20 @@ public class UsuarioResource {
         return Response.ok(usuarioService.findById(id)).build();
     }
 
-    
-    
-    
+    @GET
+    @Path("/perfis")
+    public Response getPerfis() {
+        return Response.ok().entity(Perfil.values()).build();
+    }
 
+    @GET
+    @Path("/count")
+    public Response countUsers() {
+        try {
+            long count = usuarioService.count();
+            return Response.ok().entity(count).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
 }

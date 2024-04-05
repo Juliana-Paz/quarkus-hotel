@@ -106,4 +106,9 @@ public class QuartoServiceImpl implements QuartoService {
             throw new NotFoundException("Quarto não encontrado.");
         return QuartoResponseDTO.valueOf(quarto);
     }
+
+    @Override
+    public long count() {
+        return quartoRepository.count();
+    }
 }

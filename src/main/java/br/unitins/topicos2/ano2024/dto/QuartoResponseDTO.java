@@ -1,11 +1,9 @@
 package br.unitins.topicos2.ano2024.dto;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import br.unitins.topicos2.ano2024.model.Quarto;
-import br.unitins.topicos2.ano2024.model.TipoQuarto;
 
 public record QuartoResponseDTO(
 

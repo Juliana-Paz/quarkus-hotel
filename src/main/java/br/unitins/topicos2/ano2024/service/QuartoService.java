@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.unitins.topicos2.ano2024.dto.QuartoDTO;
 import br.unitins.topicos2.ano2024.dto.QuartoResponseDTO;
-import jakarta.enterprise.context.ApplicationScoped;
 
 
 public interface QuartoService {
@@ -18,4 +17,6 @@ public interface QuartoService {
     void delete(Long id);
 
     QuartoResponseDTO update(Long id, QuartoDTO quartoDTO);
+
+    long count();
 }

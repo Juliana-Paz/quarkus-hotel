@@ -12,12 +12,13 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
 @Path("/quartos")
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class QuartoResource {
 
     @Inject
@@ -54,5 +55,16 @@ public class QuartoResource {
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(quartoService.findById(id)).build();
+    }
+
+    @GET
+    @Path("/count")
+    public Response countUsers() {
+        try {
+            long count = quartoService.count();
+            return Response.ok().entity(count).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 }

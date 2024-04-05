@@ -16,5 +16,6 @@ public interface UsuarioService {
     void delete(Long id);
 
     UsuarioResponseDTO findById(Long id);
-    
+
+    long count();
 }
