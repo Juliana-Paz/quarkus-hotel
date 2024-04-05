@@ -7,7 +7,7 @@ public class TipoQuarto extends DefaultEntity {
     
     private String nome;
 
-    public  TipoQuarto(){
+    public TipoQuarto() {
 
     }
 
@@ -19,5 +19,4 @@ public class TipoQuarto extends DefaultEntity {
         this.nome = nome;
     }
 
-    
 }

@@ -1,26 +1,32 @@
 package br.unitins.topicos2.ano2024.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Quarto extends DefaultEntity {
-    
+
     private String nome;
     private double valor;
     private String descricao;
     private boolean isDisponivel;
-    @OneToOne
-    private TipoQuarto tipoQuarto;
-    @OneToMany
-    private List<Amenidade> amenidade;
 
-    public Quarto (){
-        
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tipo_quarto_id")
+    private List<TipoQuarto> tipoQuarto = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "quarto_id")
+    private List<Amenidade> amenidade = new ArrayList<>();
+
+    public Quarto() {
+
     }
 
     public String getNome() {
@@ -55,20 +61,20 @@ public class Quarto extends DefaultEntity {
         this.isDisponivel = isDisponivel;
     }
 
-    public TipoQuarto getTipoQuarto() {
-        return tipoQuarto;
-    }
-
-    public void setTipoQuarto(TipoQuarto tipoQuarto) {
-        this.tipoQuarto = tipoQuarto;
-    }
-
     public List<Amenidade> getAmenidade() {
         return amenidade;
     }
 
     public void setAmenidade(List<Amenidade> amenidade) {
         this.amenidade = amenidade;
+    }
+
+    public List<TipoQuarto> getTipoQuarto() {
+        return tipoQuarto;
+    }
+
+    public void setTipoQuarto(List<TipoQuarto> tipoQuarto) {
+        this.tipoQuarto = tipoQuarto;
     }
 
 }
