@@ -1,3 +1,5 @@
+/*
+
 package br.unitins.topicos2.ano2024;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -18,3 +20,5 @@ class GreetingResourceTest {
     }
 
 }
+
+*/

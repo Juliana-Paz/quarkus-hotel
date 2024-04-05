@@ -2,6 +2,7 @@ package br.unitins.topicos2.ano2024.model;
 
 import java.time.YearMonth;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class CupomDesconto extends DefaultEntity {
@@ -10,6 +11,8 @@ public class CupomDesconto extends DefaultEntity {
     private String descricao;
     private double valor;
     private YearMonth dataValidade;
+    @OneToMany
+    private TipoQuarto tipoQuarto;
 
     public  CupomDesconto() {
 

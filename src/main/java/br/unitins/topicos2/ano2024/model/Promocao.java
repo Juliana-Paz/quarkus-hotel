@@ -2,6 +2,7 @@ package br.unitins.topicos2.ano2024.model;
 
 import java.time.YearMonth;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Promocao extends DefaultEntity {
@@ -11,6 +12,8 @@ public class Promocao extends DefaultEntity {
     private double valor;
     private YearMonth dataInicio;
     private YearMonth dataFim;
+    @OneToMany
+    private TipoQuarto tipoQuarto;
 
     public  Promocao() {
 
