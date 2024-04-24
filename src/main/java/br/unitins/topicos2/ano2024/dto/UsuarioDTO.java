@@ -11,7 +11,7 @@ public record UsuarioDTO(
     String email,
     String endereco,
     String cpf,
-    List<ContatoDTO> contatos,
+    List<TelefoneDTO> telefones,
     LocalDate dataNascimento,
     Integer perfilId
 

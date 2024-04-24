@@ -84,7 +84,7 @@ class CupomDesconto {
     - codigo: String
     - descricao: String
     - valor: double
-    - dataValidade: Date
+    - dataValidade: YearMonth
 }
 
 class Avaliacao {
@@ -121,7 +121,7 @@ Reserva "1" --> "*" ReservaQuarto
 ReservaQuarto "1" o--> "*" Servico
 ReservaQuarto "1" o--> "1" Quarto
 Quarto "1" o--> "*" Amenidade
-Quarto "1" o--> "1" TipoQuarto
+Quarto "*" --> "1" TipoQuarto
 Promocao "1" *--> "*" TipoQuarto
 CupomDesconto "1" *--> "*" TipoQuarto
 

@@ -11,6 +11,7 @@ import br.unitins.topicos2.ano2024.model.Amenidade;
 import br.unitins.topicos2.ano2024.model.Quarto;
 import br.unitins.topicos2.ano2024.model.TipoQuarto;
 import br.unitins.topicos2.ano2024.repository.QuartoRepository;
+import br.unitins.topicos2.ano2024.repository.TipoQuartoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,9 @@ public class QuartoServiceImpl implements QuartoService {
 
     @Inject
     QuartoRepository quartoRepository;
+
+    @Inject
+    TipoQuartoRepository tipoQuartoRepository;
 
     // @Inject
     // Validator validator;
@@ -42,14 +46,7 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setValor(quartoDTO.valor());
         entity.setDescricao(quartoDTO.descricao());
         entity.setDisponivel(true);
-
-        if (quartoDTO.tipoQuarto() != null && !quartoDTO.tipoQuarto().isEmpty()) {
-            for (TipoQuartoDTO tipoQuartoDTO : quartoDTO.tipoQuarto()) {
-                TipoQuarto tipoQuarto = new TipoQuarto();
-                tipoQuarto.setNome((tipoQuartoDTO.nome()));
-                entity.getTipoQuarto().add(tipoQuarto);
-            }
-        }
+        entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
         if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {
             for (AmenidadeDTO amenidadeDTO : quartoDTO.amenidades()) {
@@ -73,14 +70,7 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setValor(quartoDTO.valor());
         entity.setDescricao(quartoDTO.descricao());
         entity.setDisponivel(true);
-
-        if (quartoDTO.tipoQuarto() != null && !quartoDTO.tipoQuarto().isEmpty()) {
-            for (TipoQuartoDTO tipoQuartoDTO : quartoDTO.tipoQuarto()) {
-                TipoQuarto tipoQuarto = new TipoQuarto();
-                tipoQuarto.setNome((tipoQuartoDTO.nome()));
-                entity.getTipoQuarto().add(tipoQuarto);
-            }
-        }
+        entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
         if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {
             for (AmenidadeDTO amenidadeDTO : quartoDTO.amenidades()) {

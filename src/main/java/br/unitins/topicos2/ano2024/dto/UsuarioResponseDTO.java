@@ -17,7 +17,7 @@ public record UsuarioResponseDTO(
     String dataNascimento,
     String endereco,
     String cpf,
-    List<ContatoResponseDTO> contatos,
+    List<TelefoneResponseDTO> telefones,
     Perfil perfil
 
 ) {
@@ -36,7 +36,7 @@ public record UsuarioResponseDTO(
                                       formattedData,
                                       usuario.getEndereco(),
                                       usuario.getCpf(),
-                                      usuario.getContatos().stream().map(ContatoResponseDTO::valueOf).collect(Collectors.toList()),
+                                      usuario.getTelefones().stream().map(TelefoneResponseDTO::valueOf).collect(Collectors.toList()),
                                       usuario.getPerfil()
                                       );
     }

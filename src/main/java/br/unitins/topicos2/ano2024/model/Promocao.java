@@ -2,22 +2,20 @@ package br.unitins.topicos2.ano2024.model;
 
 import java.time.YearMonth;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Promocao extends DefaultEntity {
-    
-    private String nome; 
-    private String descricao;  
+
+    private String nome;
+    private String descricao;
     private double valor;
     private YearMonth dataInicio;
     private YearMonth dataFim;
-    @OneToMany
+    @JoinColumn(name = "id_tipoQuarto")
+    @ManyToOne
     private TipoQuarto tipoQuarto;
-
-    public  Promocao() {
-
-    }
 
     public String getNome() {
         return nome;
@@ -59,5 +57,12 @@ public class Promocao extends DefaultEntity {
         this.dataFim = dataFim;
     }
 
-    
+    public TipoQuarto getTipoQuarto() {
+        return tipoQuarto;
+    }
+
+    public void setTipoQuarto(TipoQuarto tipoQuarto) {
+        this.tipoQuarto = tipoQuarto;
+    }
+
 }

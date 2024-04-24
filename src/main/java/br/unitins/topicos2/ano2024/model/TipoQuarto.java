@@ -12,16 +12,28 @@ public class TipoQuarto extends DefaultEntity {
     @ManyToOne
     private CupomDesconto cupomDesconto;
 
-    public TipoQuarto() {
-
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Promocao getPromocao() {
+        return promocao;
+    }
+
+    public void setPromocao(Promocao promocao) {
+        this.promocao = promocao;
+    }
+
+    public CupomDesconto getCupomDesconto() {
+        return cupomDesconto;
+    }
+
+    public void setCupomDesconto(CupomDesconto cupomDesconto) {
+        this.cupomDesconto = cupomDesconto;
     }
 
 }

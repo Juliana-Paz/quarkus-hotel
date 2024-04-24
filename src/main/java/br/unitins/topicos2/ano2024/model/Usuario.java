@@ -23,7 +23,7 @@ public class Usuario extends DefaultEntity {
     
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
-    private List<Contato> contatos = new ArrayList<>();
+    private List<Telefone> telefones = new ArrayList<>();
     
     private Perfil perfil;
     
@@ -96,12 +96,12 @@ public class Usuario extends DefaultEntity {
         this.perfil = perfil;
     }
 
-    public List<Contato> getContatos() {
-        return contatos;
+    public List<Telefone> getTelefones() {
+        return telefones;
     }
 
-    public void setContatos(List<Contato> contatos) {
-        this.contatos = contatos;
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
     }
 
 }

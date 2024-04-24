@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import br.unitins.topicos2.ano2024.dto.ContatoDTO;
+import br.unitins.topicos2.ano2024.dto.TelefoneDTO;
 import br.unitins.topicos2.ano2024.dto.UsuarioDTO;
 import br.unitins.topicos2.ano2024.dto.UsuarioResponseDTO;
-import br.unitins.topicos2.ano2024.model.Contato;
+import br.unitins.topicos2.ano2024.model.Telefone;
 import br.unitins.topicos2.ano2024.model.Perfil;
 import br.unitins.topicos2.ano2024.model.Usuario;
 import br.unitins.topicos2.ano2024.repository.UsuarioRepository;
@@ -49,11 +49,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         entity.setCpf(usuarioDTO.cpf());
         entity.setPerfil(Perfil.valueOf(usuarioDTO.perfilId()));
 
-        if (usuarioDTO.contatos() != null && !usuarioDTO.contatos().isEmpty()) {
-            for (ContatoDTO contatoDTO : usuarioDTO.contatos()) {
-                Contato contato = new Contato();
-                contato.setTelefone(contatoDTO.telefone());
-                entity.getContatos().add(contato);
+        if (usuarioDTO.telefones() != null && !usuarioDTO.telefones().isEmpty()) {
+            for (TelefoneDTO telefoneDTO : usuarioDTO.telefones()) {
+                Telefone telefone = new Telefone();
+                telefone.setNumero(telefoneDTO.numero());
+                entity.getTelefones().add(telefone);
             }
         }
 
@@ -79,11 +79,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         entity.setCpf(usuarioDTO.cpf());
         entity.setPerfil(Perfil.valueOf(usuarioDTO.perfilId()));
 
-        if (usuarioDTO.contatos() != null && !usuarioDTO.contatos().isEmpty()) {
-            for (ContatoDTO contatoDTO : usuarioDTO.contatos()) {
-                Contato contato = new Contato();
-                contato.setTelefone(contatoDTO.telefone());
-                entity.getContatos().add(contato);
+        if (usuarioDTO.telefones() != null && !usuarioDTO.telefones().isEmpty()) {
+            for (TelefoneDTO telefoneDTO : usuarioDTO.telefones()) {
+                Telefone telefone = new Telefone();
+                telefone.setNumero(telefoneDTO.numero());
+                entity.getTelefones().add(telefone);
             }
         }
 

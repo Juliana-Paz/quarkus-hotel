@@ -1,8 +1,8 @@
 package br.unitins.topicos2.ano2024.dto;
 
-public record ContatoDTO(
+public record TelefoneDTO(
 
-    String telefone
+        String numero
 
 ) {
 

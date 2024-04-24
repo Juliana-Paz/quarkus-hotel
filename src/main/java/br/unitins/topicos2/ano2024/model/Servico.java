@@ -8,9 +8,18 @@ public class Servico extends DefaultEntity {
     String nome;
     String descricao;
     double valor;
-    
+    boolean isAtivo;
+
+    public boolean isAtivo() {
+        return isAtivo;
+    }
+
+    public void setAtivo(boolean isAtivo) {
+        this.isAtivo = isAtivo;
+    }
+
     public Servico() {
-        
+
     }
 
     public String getNome() {
@@ -36,7 +45,5 @@ public class Servico extends DefaultEntity {
     public void setValor(double valor) {
         this.valor = valor;
     }
-
-    
 
 }
