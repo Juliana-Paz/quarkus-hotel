@@ -22,8 +22,7 @@ public class Quarto extends DefaultEntity {
     @ManyToOne
     private TipoQuarto tipoQuarto;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quarto_id")
+    @OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Amenidade> amenidade = new ArrayList<>();
 
     public String getNome() {

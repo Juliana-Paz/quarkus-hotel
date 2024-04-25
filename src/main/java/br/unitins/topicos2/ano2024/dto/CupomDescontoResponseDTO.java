@@ -10,7 +10,8 @@ public record CupomDescontoResponseDTO(
         String codigo,
         String descricao,
         double valor,
-        YearMonth dataValidade
+        YearMonth dataValidade,
+        TipoQuartoResponseDTO tipoQuarto
 ) 
 
 {
@@ -21,6 +22,7 @@ public record CupomDescontoResponseDTO(
                 cupomDesconto.getCodigo(),
                 cupomDesconto.getDescricao(),
                 cupomDesconto.getValor(),
-                cupomDesconto.getDataValidade());
+                cupomDesconto.getDataValidade(),
+                TipoQuartoResponseDTO.valueOf(cupomDesconto.getTipoQuarto()));
     }
 }

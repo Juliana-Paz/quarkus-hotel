@@ -122,12 +122,9 @@ ReservaQuarto "1" o--> "*" Servico
 ReservaQuarto "1" o--> "1" Quarto
 Quarto "1" o--> "*" Amenidade
 Quarto "*" --> "1" TipoQuarto
-Promocao "1" *--> "*" TipoQuarto
-CupomDesconto "1" *--> "*" TipoQuarto
+Promocao "*" *--> "1" TipoQuarto
+CupomDesconto "*" *--> "1" TipoQuarto
 
 
 @enduml
-
-
-
 

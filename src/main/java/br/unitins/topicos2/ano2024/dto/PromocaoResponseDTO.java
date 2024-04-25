@@ -9,8 +9,9 @@ public record PromocaoResponseDTO(
         String nome,
         String descricao,
         double valor,
-        YearMonth dataInicio,
-        YearMonth dataFim
+        // YearMonth dataInicio,
+        // YearMonth dataFim,
+        TipoQuartoResponseDTO tipoQuarto
 ) {
     public static PromocaoResponseDTO valueOf(Promocao promocao) {
         return new PromocaoResponseDTO(
@@ -18,8 +19,9 @@ public record PromocaoResponseDTO(
                 promocao.getNome(),
                 promocao.getDescricao(),
                 promocao.getValor(),
-                YearMonth.from(promocao.getDataInicio()),
-                YearMonth.from(promocao.getDataFim())
+                // YearMonth.from(promocao.getDataInicio()),
+                // YearMonth.from(promocao.getDataFim()),
+                TipoQuartoResponseDTO.valueOf(promocao.getTipoQuarto())
         );
     }
 }
