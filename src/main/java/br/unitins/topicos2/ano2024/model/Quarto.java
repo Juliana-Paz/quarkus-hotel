@@ -15,13 +15,11 @@ public class Quarto extends DefaultEntity {
     private String nome;
     private double valor;
     private String descricao;
-    private boolean isDisponivel;
+    private boolean isReservado;
     private boolean isAtivo;
-
     @JoinColumn(name = "id_tipoQuarto")
     @ManyToOne
     private TipoQuarto tipoQuarto;
-
     @OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Amenidade> amenidade = new ArrayList<>();
 
@@ -49,12 +47,12 @@ public class Quarto extends DefaultEntity {
         this.descricao = descricao;
     }
 
-    public boolean isDisponivel() {
-        return isDisponivel;
+    public boolean isReservado() {
+        return isReservado;
     }
 
-    public void setDisponivel(boolean isDisponivel) {
-        this.isDisponivel = isDisponivel;
+    public void setReservado(boolean isReservado) {
+        this.isReservado = isReservado;
     }
 
     public boolean isAtivo() {

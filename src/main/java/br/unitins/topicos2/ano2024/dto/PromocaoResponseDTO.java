@@ -1,6 +1,6 @@
 package br.unitins.topicos2.ano2024.dto;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 
 import br.unitins.topicos2.ano2024.model.Promocao;
 
@@ -9,8 +9,8 @@ public record PromocaoResponseDTO(
         String nome,
         String descricao,
         double valor,
-        // YearMonth dataInicio,
-        // YearMonth dataFim,
+        LocalDate dataInicio,
+        LocalDate dataFim,
         TipoQuartoResponseDTO tipoQuarto
 ) {
     public static PromocaoResponseDTO valueOf(Promocao promocao) {
@@ -19,8 +19,8 @@ public record PromocaoResponseDTO(
                 promocao.getNome(),
                 promocao.getDescricao(),
                 promocao.getValor(),
-                // YearMonth.from(promocao.getDataInicio()),
-                // YearMonth.from(promocao.getDataFim()),
+                LocalDate.from(promocao.getDataInicio()),
+                LocalDate.from(promocao.getDataFim()),
                 TipoQuartoResponseDTO.valueOf(promocao.getTipoQuarto())
         );
     }

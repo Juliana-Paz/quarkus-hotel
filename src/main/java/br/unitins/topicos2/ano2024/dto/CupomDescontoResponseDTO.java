@@ -1,6 +1,6 @@
 package br.unitins.topicos2.ano2024.dto;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 
 import br.unitins.topicos2.ano2024.model.CupomDesconto;
 
@@ -10,7 +10,7 @@ public record CupomDescontoResponseDTO(
         String codigo,
         String descricao,
         double valor,
-        YearMonth dataValidade,
+        LocalDate dataValidade,
         TipoQuartoResponseDTO tipoQuarto
 ) 
 

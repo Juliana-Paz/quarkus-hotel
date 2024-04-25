@@ -1,12 +1,12 @@
 package br.unitins.topicos2.ano2024.dto;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 
 public record CupomDescontoDTO(
         String codigo,
         String descricao,
         double valor,
-        YearMonth dataValidade,
+        LocalDate dataValidade,
         Long id_tipoQuarto
 ) 
 

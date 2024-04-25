@@ -43,7 +43,7 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setNome(quartoDTO.nome());
         entity.setValor(quartoDTO.valor());
         entity.setDescricao(quartoDTO.descricao());
-        entity.setDisponivel(true);
+        entity.setReservado(true);
         entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
         if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {
@@ -67,7 +67,7 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setNome(quartoDTO.nome());
         entity.setValor(quartoDTO.valor());
         entity.setDescricao(quartoDTO.descricao());
-        entity.setDisponivel(true);
+        entity.setReservado(true);
         entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
         if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {

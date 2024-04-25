@@ -1,6 +1,6 @@
 package br.unitins.topicos2.ano2024.model;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
@@ -11,7 +11,7 @@ public class CupomDesconto extends DefaultEntity {
     private String codigo;
     private String descricao;
     private double valor;
-    private YearMonth dataValidade;
+    private LocalDate dataValidade;
     @JoinColumn(name = "id_tipoQuarto")
     @ManyToOne
     private TipoQuarto tipoQuarto;
@@ -40,11 +40,11 @@ public class CupomDesconto extends DefaultEntity {
         this.valor = valor;
     }
 
-    public YearMonth getDataValidade() {
+    public LocalDate getDataValidade() {
         return dataValidade;
     }
 
-    public void setDataValidade(YearMonth dataValidade) {
+    public void setDataValidade(LocalDate dataValidade) {
         this.dataValidade = dataValidade;
     }
 

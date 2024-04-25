@@ -47,10 +47,10 @@ public class PromocaoServiceImpl implements PromocaoService {
         Promocao promocao = new Promocao();
         promocao.setNome(promocaoDTO.nome());
         promocao.setDescricao(promocaoDTO.descricao());
-        // promocao.setDataInicio(promocaoDTO.dataInicio());
-        // promocao.setDataFim(promocaoDTO.dataFim());
+        promocao.setDataInicio(promocaoDTO.dataInicio());
+        promocao.setDataFim(promocaoDTO.dataFim());
         promocao.setValor(promocaoDTO.valor());
-        promocao.setTipoQuarto(tipoQuartoRepository.findById(promocaoDTO.id_promocao()));
+        promocao.setTipoQuarto(tipoQuartoRepository.findById(promocaoDTO.id_tipoQuarto()));
         promocaoRepository.persist(promocao);
         return PromocaoResponseDTO.valueOf(promocao);
     }
@@ -64,10 +64,10 @@ public class PromocaoServiceImpl implements PromocaoService {
         }
         promocao.setNome(promocaoDTO.nome());
         promocao.setDescricao(promocaoDTO.descricao());
-        // promocao.setDataInicio(promocaoDTO.dataInicio());
-        // promocao.setDataFim(promocaoDTO.dataFim());
+        promocao.setDataInicio(promocaoDTO.dataInicio());
+        promocao.setDataFim(promocaoDTO.dataFim());
         promocao.setValor(promocaoDTO.valor());
-        promocao.setTipoQuarto(tipoQuartoRepository.findById(promocaoDTO.id_promocao()));
+        promocao.setTipoQuarto(tipoQuartoRepository.findById(promocaoDTO.id_tipoQuarto()));
         return PromocaoResponseDTO.valueOf(promocao);
     }
 

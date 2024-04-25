@@ -84,7 +84,7 @@ class CupomDesconto {
     - codigo: String
     - descricao: String
     - valor: double
-    - dataValidade: YearMonth
+    - dataValidade: LocalDate
 }
 
 class Avaliacao {
