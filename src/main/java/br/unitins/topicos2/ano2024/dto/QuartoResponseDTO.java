@@ -13,8 +13,9 @@ public record QuartoResponseDTO(
         double valor,
         String descricao,
         boolean isReservado,
+        boolean isAtivo,
         TipoQuartoResponseDTO tipoQuarto,
-        List<AmenidadeResponseDTO> amenidade
+        List<AmenidadeResponseDTO> amenidades
 
 )
 
@@ -26,6 +27,7 @@ public record QuartoResponseDTO(
                 quarto.getValor(),
                 quarto.getDescricao(),
                 quarto.isReservado(),
+                quarto.isAtivo(),
                 TipoQuartoResponseDTO.valueOf(quarto.getTipoQuarto()),
                 quarto.getAmenidade().stream().map(AmenidadeResponseDTO::valueOf).collect(Collectors.toList()));
 

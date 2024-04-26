@@ -8,6 +8,7 @@ import br.unitins.topicos2.ano2024.dto.QuartoDTO;
 import br.unitins.topicos2.ano2024.dto.QuartoResponseDTO;
 import br.unitins.topicos2.ano2024.model.Amenidade;
 import br.unitins.topicos2.ano2024.model.Quarto;
+import br.unitins.topicos2.ano2024.repository.AmenidadeRepository;
 import br.unitins.topicos2.ano2024.repository.QuartoRepository;
 import br.unitins.topicos2.ano2024.repository.TipoQuartoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -43,13 +44,15 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setNome(quartoDTO.nome());
         entity.setValor(quartoDTO.valor());
         entity.setDescricao(quartoDTO.descricao());
-        entity.setReservado(true);
+        entity.setReservado(quartoDTO.isReservado());
+        entity.setAtivo(quartoDTO.isAtivo());
         entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
         if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {
             for (AmenidadeDTO amenidadeDTO : quartoDTO.amenidades()) {
                 Amenidade amenidade = new Amenidade();
                 amenidade.setNome((amenidadeDTO.nome()));
+                amenidade.setQuarto(entity);
                 entity.getAmenidade().add(amenidade);
             }
         }
@@ -67,7 +70,8 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setNome(quartoDTO.nome());
         entity.setValor(quartoDTO.valor());
         entity.setDescricao(quartoDTO.descricao());
-        entity.setReservado(true);
+        entity.setReservado(quartoDTO.isReservado());
+        entity.setAtivo(quartoDTO.isAtivo());
         entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
         if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {

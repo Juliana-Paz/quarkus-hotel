@@ -8,6 +8,7 @@ public record QuartoDTO(
                 double valor,
                 String descricao,
                 boolean isReservado,
+                boolean isAtivo,
                 Long idTipoQuarto,
                 List<AmenidadeDTO> amenidades
 

@@ -18,6 +18,7 @@ public class AmenidadeServiceImpl implements AmenidadeService {
     @Inject
     AmenidadeRepository amenidadeRepository;
 
+    @Override
     @Transactional
     public List<AmenidadeResponseDTO> getAll(int page, int pageSize) {
         return amenidadeRepository.findAll()
@@ -26,7 +27,17 @@ public class AmenidadeServiceImpl implements AmenidadeService {
                 .map(AmenidadeResponseDTO::valueOf)
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    @Transactional
+    public List<AmenidadeResponseDTO> getAll() {
+        return amenidadeRepository.findAll()
+                .stream()
+                .map(AmenidadeResponseDTO::valueOf)
+                .collect(Collectors.toList());
+    }
 
+    @Override
     @Transactional
     public AmenidadeResponseDTO findById(Long id) {
         Amenidade amenidade = amenidadeRepository.findById(id);
@@ -36,6 +47,7 @@ public class AmenidadeServiceImpl implements AmenidadeService {
         return AmenidadeResponseDTO.valueOf(amenidade);
     }
 
+    @Override
     @Transactional
     public AmenidadeResponseDTO create(AmenidadeDTO amenidadeDTO) {
         Amenidade amenidade = new Amenidade();
@@ -44,6 +56,7 @@ public class AmenidadeServiceImpl implements AmenidadeService {
         return AmenidadeResponseDTO.valueOf(amenidade);
     }
 
+    @Override
     @Transactional
     public AmenidadeResponseDTO update(Long id, AmenidadeDTO amenidadeDTO) {
         Amenidade amenidade = amenidadeRepository.findById(id);
@@ -54,11 +67,13 @@ public class AmenidadeServiceImpl implements AmenidadeService {
         return AmenidadeResponseDTO.valueOf(amenidade);
     }
 
+    @Override
     @Transactional
     public void delete(Long id) {
         amenidadeRepository.deleteById(id);
     }
 
+    @Override
     public long count() {
         return amenidadeRepository.count();
     }

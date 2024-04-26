@@ -9,6 +9,8 @@ public interface AmenidadeService {
 
     List<AmenidadeResponseDTO> getAll(int page, int pageSize);
 
+    List<AmenidadeResponseDTO> getAll();
+
     AmenidadeResponseDTO findById(Long id);
 
     AmenidadeResponseDTO create(AmenidadeDTO amenidadeDTO);

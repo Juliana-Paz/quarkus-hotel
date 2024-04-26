@@ -19,9 +19,19 @@ public class AmenidadeResource {
     AmenidadeService amenidadeService;
 
     @GET
+    @Path("get-all-pagination")
     public Response getAll(@QueryParam("page") int page, @QueryParam("pageSize") int pageSize) {
         try {
             return Response.ok().entity(amenidadeService.getAll(page, pageSize)).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+    
+    @GET
+    public Response getAll() {
+        try {
+            return Response.ok().entity(amenidadeService.getAll()).build();
         } catch (Exception e) {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
