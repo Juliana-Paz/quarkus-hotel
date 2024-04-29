@@ -112,17 +112,25 @@ class TipoMensagem {
 Usuario "1" o--> "*" Telefone
 Usuario "*" -up-> "*" Perfil
 Usuario "1" *--> "*" CartaoCredito
+
 Mensagem "*" -right-> "1..0" Usuario
 Mensagem "1" --> "1" TipoMensagem
+
 Avaliacao "*" *-left-> "1" Usuario
 Avaliacao "1" *--> "1" Reserva
+
 Usuario "1" *--> "*" Reserva
+
 Reserva "1" --> "*" ReservaQuarto
+
 ReservaQuarto "1" o--> "*" Servico
 ReservaQuarto "1" o--> "1" Quarto
-Quarto "1" o--> "*" Amenidade
+
+Quarto "*" o--> "*" Amenidade
 Quarto "*" --> "1" TipoQuarto
+
 Promocao "*" *--> "1" TipoQuarto
+
 CupomDesconto "*" *--> "1" TipoQuarto
 
 

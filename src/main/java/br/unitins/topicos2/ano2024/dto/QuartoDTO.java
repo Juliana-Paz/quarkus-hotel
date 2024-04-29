@@ -10,7 +10,7 @@ public record QuartoDTO(
                 boolean isReservado,
                 boolean isAtivo,
                 Long idTipoQuarto,
-                List<AmenidadeDTO> amenidades
+                List<Long> ids_amenidades
 
 ) {
 

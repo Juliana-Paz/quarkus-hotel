@@ -1,5 +1,6 @@
 package br.unitins.topicos2.ano2024.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,9 @@ public class QuartoServiceImpl implements QuartoService {
     @Inject
     TipoQuartoRepository tipoQuartoRepository;
 
+    @Inject
+    AmenidadeRepository amenidadeRepository;
+
     // @Inject
     // Validator validator;
 
@@ -48,14 +52,8 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setAtivo(quartoDTO.isAtivo());
         entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
-        if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {
-            for (AmenidadeDTO amenidadeDTO : quartoDTO.amenidades()) {
-                Amenidade amenidade = new Amenidade();
-                amenidade.setNome((amenidadeDTO.nome()));
-                amenidade.setQuarto(entity);
-                entity.getAmenidade().add(amenidade);
-            }
-        }
+        List<Amenidade> amenidades = amenidadeRepository.findByIds(quartoDTO.ids_amenidades());
+        entity.setAmenidade(amenidades);
 
         quartoRepository.persist(entity);
 
@@ -74,13 +72,8 @@ public class QuartoServiceImpl implements QuartoService {
         entity.setAtivo(quartoDTO.isAtivo());
         entity.setTipoQuarto(tipoQuartoRepository.findById(quartoDTO.idTipoQuarto()));
 
-        if (quartoDTO.amenidades() != null && !quartoDTO.amenidades().isEmpty()) {
-            for (AmenidadeDTO amenidadeDTO : quartoDTO.amenidades()) {
-                Amenidade amenidade = new Amenidade();
-                amenidade.setNome((amenidadeDTO.nome()));
-                entity.getAmenidade().add(amenidade);
-            }
-        }
+        List<Amenidade> amenidades = amenidadeRepository.findByIds(quartoDTO.ids_amenidades());
+        entity.setAmenidade(amenidades);
 
         return QuartoResponseDTO.valueOf(entity);
     }

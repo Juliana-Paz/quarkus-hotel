@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -20,7 +22,12 @@ public class Quarto extends DefaultEntity {
     @JoinColumn(name = "id_tipoQuarto")
     @ManyToOne
     private TipoQuarto tipoQuarto;
-    @OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany
+    @JoinTable(
+        name = "quarto_amenidade",
+        joinColumns = @JoinColumn(name = "id_quarto"),
+        inverseJoinColumns = @JoinColumn(name = "id_amenidade")
+    )
     private List<Amenidade> amenidade = new ArrayList<>();
 
     public String getNome() {
