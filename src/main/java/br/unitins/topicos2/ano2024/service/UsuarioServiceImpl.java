@@ -28,6 +28,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Inject
     Validator validator;
 
+    @Inject
+    HashService hashService;
+
     @Override
     public List<UsuarioResponseDTO> getAll(int page, int pageSize) {
         List<Usuario> usuarios = usuarioRepository.findAll().page(page, pageSize).list();
@@ -42,7 +45,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         entity.setNome(usuarioDTO.nome());
         entity.setSobrenome(usuarioDTO.sobrenome());
-        entity.setSenha(usuarioDTO.senha());
+        entity.setSenha(hashService.getHashSenha(usuarioDTO.senha()));
         entity.setEmail(usuarioDTO.email());
         entity.setDataNascimento(usuarioDTO.dataNascimento());
         entity.setEndereco(usuarioDTO.endereco());
@@ -116,5 +119,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public long count() {
         return usuarioRepository.count();
+    }
+
+    @Override
+    public UsuarioResponseDTO findByEmailAndSenha(String email, String senha) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario != null && hashService.verifyPassword(senha, usuario.getSenha())) {
+            return UsuarioResponseDTO.valueOf(usuario);
+        } else {
+            throw new NotFoundException("Usuário não encontrado ou senha incorreta.");
+        }
     }
 }

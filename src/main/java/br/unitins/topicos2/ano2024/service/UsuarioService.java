@@ -18,4 +18,7 @@ public interface UsuarioService {
     UsuarioResponseDTO findById(Long id);
 
     long count();
+
+    UsuarioResponseDTO findByEmailAndSenha(String email, String senha);
+
 }

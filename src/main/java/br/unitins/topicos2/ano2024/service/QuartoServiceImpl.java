@@ -1,10 +1,8 @@
 package br.unitins.topicos2.ano2024.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.unitins.topicos2.ano2024.dto.AmenidadeDTO;
 import br.unitins.topicos2.ano2024.dto.QuartoDTO;
 import br.unitins.topicos2.ano2024.dto.QuartoResponseDTO;
 import br.unitins.topicos2.ano2024.model.Amenidade;
